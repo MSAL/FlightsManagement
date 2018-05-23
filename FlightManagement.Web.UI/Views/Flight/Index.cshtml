@@ -1,0 +1,41 @@
+﻿@model IEnumerable<FlightManagement.Web.UI.Models.FlightModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+
+        <th>Number</th>
+        <th>Departure Date</th>
+        <th>Arrival Date</th>
+        <th>Departure Airport</th>
+        <th>Arrival Airport</th>
+        <th>Fuel Consumption</th>
+
+        <th>Action</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <th>item.Numero</th>
+        <th>item.DepartureDate</th>
+        <th>item.ArrivalDate</th>
+        <th>item.DepartureAirport</th>
+        <th>item.ArrivalAirport</th>
+        <th>item.FuelConsumption</th>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

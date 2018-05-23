@@ -17,6 +17,7 @@ using FlightManagement.Web.UI.Models;
 using System.Data.Entity;
 using System.Web.Mvc;
 using Unity;
+using Unity.Lifetime;
 using Unity.Mvc5;
 
 namespace FlightManagement.Web.UI
@@ -39,7 +40,7 @@ namespace FlightManagement.Web.UI
         {
             var container = new UnityContainer();
 
-            container.RegisterType<DbContext, FlightsDbContext>();
+            container.RegisterType<DbContext, FlightsDbContext>(new PerThreadLifetimeManager());
 
             #region Repository
             container.RegisterType<IAirportRepository,AirportRepository> ();

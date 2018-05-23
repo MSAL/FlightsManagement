@@ -10,10 +10,16 @@ namespace FlightManagement.Domain.Contexte
 {
     public class FlightsDbContext : DbContext
     {
+        public FlightsDbContext() : base("FlightsDB")
+        {
+
+        }
+
         public DbSet<Airport> Airports { get; set; }
         public DbSet<Plane> Planes { get; set; }
         public DbSet<Flight> Flights { get; set; }
         public DbSet<User> Users { get; set; }
-        
+
+
     }
 }

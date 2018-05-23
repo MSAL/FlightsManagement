@@ -7,5 +7,10 @@ namespace FlightManagement.Web.UI.Models
 {
     public class FlightListModel
     {
+        public FlightListModel()
+        {
+            flightList = new List<FlightModel>();
+        }
+        public List<FlightModel> flightList { get; set; }
     }
 }
