@@ -7,5 +7,7 @@ namespace FlightManagement.Web.UI.Models
 {
     public class PlaneModel
     {
+        public int Id { get; set; }
+        public string Name { set; get; }
     }
 }

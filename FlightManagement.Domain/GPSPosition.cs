@@ -16,5 +16,11 @@ namespace FlightManagement.Domain
             Latitude = latitude;
             Longitude = longitude;
         }
+
+        public GPSPosition()
+        {
+            Latitude = 0.0;
+            Longitude = 0.0;
+        }
     }
 }

@@ -11,25 +11,40 @@ namespace FlightManagement.Web.UI.Models
     public class FlightModel
     {
         public int Id { get; set; }
-        [DisplayName("Flight Number")]
+
+        [DisplayName("Flight number")]
         public string Numero { get; set; }
+
         public int Schedule { get; set; }
-        [DisplayName("Departure Date")]
+
+        [DisplayName("Departure date")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime DepartureDate { get; set; }
-        [DisplayName("Arrival Date")]
+
+        [DisplayName("Arrival date")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime ArrivalDate { get; set; }
-        public Plane Plane { get; set; }
-        public Airport DepartureAirport { get; set; }
-        public Airport ArrivalAirport { get; set; }
+
+        [DisplayName("Aircraft refrence")]
+        public PlaneModel Plane { get; set; }
+
+        [DisplayName("Departure airport")]
+        public AirportModel DepartureAirport { get; set; }
+
+        [DisplayName("Arrival airport")]
+        public AirportModel ArrivalAirport { get; set; }
+
         public List<AirportModel> AirportList { get; set; }
+
+        public List<PlaneModel> PlaneList { get; set; }
+
         public double FuelConsumption { get; set; }
 
 
         public FlightModel()
         {
             AirportList = new List<AirportModel>();
+            PlaneList = new List<PlaneModel>();
         }
 
     }

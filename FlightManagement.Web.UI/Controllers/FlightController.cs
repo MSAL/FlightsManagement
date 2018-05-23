@@ -16,16 +16,16 @@ namespace FlightManagement.Web.UI.Controllers
         #region Fields
         private readonly IPlaneService _planeService;
         private readonly IFlightService _flightService;
-        private readonly IAirportService _airport;
+        private readonly IAirportService _airportService;
         #endregion
         public FlightController(IPlaneService planeService,
                             IFlightService flightService,
-                            IAirportService airport
+                            IAirportService airportService
                             )
         {
             this._planeService = planeService;
             this._flightService = flightService;
-            this._airport = airport;
+            this._airportService = airportService;
         }
         // GET: Flight
         public ActionResult Index()
@@ -44,11 +44,11 @@ namespace FlightManagement.Web.UI.Controllers
             var flightModel = new FlightModel();
             flightModel.Id = flight.Id;
             flightModel.Numero = flight.Numero;
-            flightModel.Plane = flight.Plane;
+            flightModel.Plane = preparePlaneModel(flight.Plane);
             flightModel.Schedule = flight.Schedule;
             flightModel.FuelConsumption = _flightService.FuelConsumption(flight);
-            flightModel.DepartureAirport = flight.DepartureAirport;
-            flightModel.ArrivalAirport = flight.ArrivalAirport;
+            flightModel.DepartureAirport = prepareAirportModel(flight.DepartureAirport);
+            flightModel.ArrivalAirport = prepareAirportModel(flight.ArrivalAirport);
             flightModel.DepartureDate = flight.DepartureDate;
             flightModel.ArrivalDate = flight.ArrivalDate;
 
@@ -56,7 +56,50 @@ namespace FlightManagement.Web.UI.Controllers
             
         }
 
-        
+
+        /*this method can be replaced with AutoMapper*/
+        [NonAction]
+        private List<AirportModel> prepareAirportListModel(List<Airport> airportList)
+        {
+            List<AirportModel> airportListModel = new List<AirportModel>();
+            if (airportList != null)
+            {
+                foreach (var airport in airportList)
+                {
+                    airportListModel.Add(prepareAirportModel(airport));
+                }
+            }
+            return airportListModel;
+        }
+
+        /*this method can be replaced with AutoMapper*/
+        [NonAction]
+        private AirportModel prepareAirportModel(Airport airport)
+        {
+            AirportModel airportModel = new AirportModel();
+            if (airport != null)
+            {
+                airportModel.Id = airport.Id;
+                airportModel.Name = airport.Name;
+
+            }
+            return airportModel;
+        }
+
+        /*this method can be replaced with AutoMapper*/
+        [NonAction]
+        private PlaneModel preparePlaneModel(Plane plane)
+        {
+            PlaneModel planModel = new PlaneModel();
+            if (plane != null)
+            {
+                planModel.Id = plane.Id;
+                planModel.Name = plane.Name;
+
+            }
+            return planModel;
+        }
+
 
         /*this method can be replaced with AutoMapper*/
         [NonAction]
@@ -82,6 +125,7 @@ namespace FlightManagement.Web.UI.Controllers
         public ActionResult Create()
         {
             var flightModel = new FlightModel();
+            flightModel.AirportList = prepareAirportListModel(_airportService.GetAll());
             return View(flightModel);
         }
 

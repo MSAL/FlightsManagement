@@ -13,11 +13,12 @@
     <tr>
 
         <th>Number</th>
-        <th>Departure Date</th>
-        <th>Arrival Date</th>
-        <th>Departure Airport</th>
-        <th>Arrival Airport</th>
-        <th>Fuel Consumption</th>
+        <th>Plane refrence</th>
+        <th>Departure date</th>
+        <th>Arrival date</th>
+        <th>Departure airport</th>
+        <th>Arrival airport</th>
+        <th>Fuel consumption</th>
 
         <th>Action</th>
     </tr>
@@ -25,6 +26,7 @@
 @foreach (var item in Model) {
     <tr>
         <th>item.Numero</th>
+        <th>item.Plane.Name</th>
         <th>item.DepartureDate</th>
         <th>item.ArrivalDate</th>
         <th>item.DepartureAirport</th>
